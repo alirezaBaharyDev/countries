@@ -19,7 +19,6 @@ export class ConfigHelperService {
 
 
   getUrl(restExtra: RestExtra) {
-    console.log('restExtra', restExtra)
     if (restExtra.serverUrlConfig == null && restExtra.serverUrlConfig == undefined) {
       restExtra.serverUrlConfig = MAIN_SERVER_URL;
     }

@@ -98,9 +98,7 @@ export class Interceptor implements HttpInterceptor {
         break;
       case 404:
         this.ngxNotificationMsgService.open({
-          status: NgxNotificationStatusMsg.FAILURE,
-          header: 'خطا',
-          color: 'red',
+          status: NgxNotificationStatusMsg.INFO,
           messages: ['موردی یافت نشد']
         });
         break;

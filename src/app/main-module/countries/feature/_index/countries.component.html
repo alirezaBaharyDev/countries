@@ -10,7 +10,7 @@
              id="cInput"
       >
       <mat-autocomplete #auto="matAutocomplete">
-        <mat-option *ngFor="let country of countries | async" [value]="country.name">
+        <mat-option *ngFor="let country of countries" [value]="country.name">
           <img class="example-option-img" aria-hidden [src]="country.flag" height="25">
           <span>{{country.name}}</span> |
         </mat-option>

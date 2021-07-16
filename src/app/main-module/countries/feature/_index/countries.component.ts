@@ -13,10 +13,10 @@ import {PatternConstants} from "../../../../shared/constants/pattern.constants";
   styleUrls: ['./countries.component.scss']
 })
 export class CountriesComponent implements OnInit, AfterViewInit, OnDestroy {
-  countries: Observable<Country[]> | any
+  countries: Country[] = [];
   countryCtrl = new FormControl(null, [Validators.pattern(PatternConstants.enText)])
   debounceTime: number = 1000;
-  valid:any;
+  valid: any;
 
   constructor(private countriesService: CountriesService) {
   }
@@ -33,14 +33,22 @@ export class CountriesComponent implements OnInit, AfterViewInit, OnDestroy {
    * With each keyup if input value valid, the service is called after 1 seconds
    */
   getCountries() {
-      const input = document.getElementById('cInput');
-      const example = fromEvent(<any>input, 'keyup').pipe(map((i: any) => i.currentTarget['value']));
-      const debouncedInput = example.pipe(debounceTime(this.debounceTime));
-      debouncedInput.pipe(untilDestroyed(this)).subscribe(val => {
-        if (val && this.valid === null) {
-          this.countries = this.countriesService.getCountriesByFullNameFilter({name: val}, {fullText: false});
-        }
-      });
+    const input = document.getElementById('cInput');
+    const example = fromEvent(<any>input, 'keyup').pipe(map((i: any) => i.currentTarget['value']));
+    const debouncedInput = example.pipe(debounceTime(this.debounceTime));
+    debouncedInput.pipe(untilDestroyed(this)).subscribe(val => {
+      if (val && this.valid === null) {
+        this.countriesService.getCountriesByFullNameFilter({name: val}, {fullText: false}).subscribe((res: Country[]) => {
+          if (res) {
+            this.countries = res;
+          }else {
+            this.countries = []
+          }
+        });
+      } else {
+        this.countries = []
+      }
+    });
   }
 
   ngOnDestroy() {
