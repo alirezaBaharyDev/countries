@@ -1,0 +1,43 @@
+.logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin: 0 7px;
+}
+
+
+
+.navbar-txt {
+  color: black;text-decoration: none;font-size: 0.8em
+}
+
+.navbar-nav {
+  margin: 0 5px;
+}
+
+
+:host-context(html[dir="ltr"]) #navbar-nav {
+  margin-left: auto !important;
+}
+
+:host-context(html[dir="rtl"]) #navbar-nav {
+  margin-right: auto !important;
+}
+
+//.navbar {
+//  background-color: #23364b!important; ; color: white; border-bottom: 1px solid #8384b9; padding:5px
+//}
+.navbar {
+  padding-top: .2rem!important;
+  padding-bottom: .2rem!important;
+  background-color: white;
+  border-bottom: 1px solid #0000000f;
+}
+i {
+  font-size: 1em;
+}
+
+.fa-bars {
+  font-size: 1.3em !important;
+  margin: 0 10px;
+}

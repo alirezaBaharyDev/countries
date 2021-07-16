@@ -1,0 +1,30 @@
+  <div class="container d-flex flex-column">
+    <div class="row align-items-center justify-content-center min-vh-100">
+      <div class="col-md-6 col-lg-5 col-xl-5 py-6 py-md-0">
+        <div class="card shadow zindex-100 mb-0">
+          <div class="card-body px-md-5 py-5">
+            <div class="mb-5">
+              <h6 class="h3">ورود</h6>
+              <p class="text-muted mb-0">برای استفاده از امکانات سایت وارد شوید</p>
+            </div>
+            <span class="clearfix"></span>
+            <form>
+              <div class="mb-3">
+                <label class="form-label">نام کاربری</label>
+                <input  class="form-control" placeholder="نام کاربری را وارد کنید">
+              </div>
+              <div class="mb-3">
+                <label  class="form-label">گذرواژه</label>
+                <input type="password" class="form-control" placeholder="گذرواژه را وارد کنید">
+              </div>
+              <div class="mt-4 text-end">
+                <button type="button" class="btn btn-block btn-primary" routerLink="/panel" (click)="logIn()" >ورود</button>
+              </div>
+            </form>
+          </div>
+          <div class="card-footer px-md-5"><small> برای عضویت </small>
+            <a href="#" class="small font-weight-bold">کلیک کنید</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
