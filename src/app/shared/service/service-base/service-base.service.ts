@@ -1,6 +1,6 @@
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {RestExtra} from "./helper/rest-extra";
-import {ConfigHelperService} from "./config-helper.service";
+import {RestExtra} from "./helper interface/rest-extra";
+import {ConfigHelperService} from "./config/config-helper.service";
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 
@@ -8,18 +8,17 @@ import {Observable} from "rxjs";
   providedIn: 'root'
 })
 export class ServiceBaseService {
-
-
-  constructor(public configHelperService: ConfigHelperService, public httpClient: HttpClient) {
+  public prefix: string;
+  constructor(public configHelperService: ConfigHelperService ,public httpClient: HttpClient) {
+    this.prefix = ''
   }
 
   getService(restExtra: RestExtra): Observable<any> {
     let httpHeaders = new HttpHeaders();
     let url = this.configHelperService.getUrl(restExtra);
     httpHeaders = this.configHelperService.getHttpHeaders(httpHeaders, restExtra);
-    return this.httpClient.get(url,
-      {
-        headers: httpHeaders,
+    return this.httpClient.get(url, {
+      headers: httpHeaders,
         responseType: this.configHelperService.getResponseContentType(restExtra.responseContentType)
       }
     )

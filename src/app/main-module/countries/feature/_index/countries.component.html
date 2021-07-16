@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-md-6 col-lg-6 col-sm-6 col-12">
+    <mat-form-field class="w-100" appearance="fill">
+      <mat-label>برای جستجو نام کشور را به صورت انگلیسی وارد کنید</mat-label>
+      <input matInput
+             aria-label="State"
+             (keyup)="valid = countryCtrl.errors"
+             [matAutocomplete]="auto"
+             [formControl]="countryCtrl"
+             id="cInput"
+      >
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let country of countries | async" [value]="country.name">
+          <img class="example-option-img" aria-hidden [src]="country.flag" height="25">
+          <span>{{country.name}}</span> |
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <p style="color: red" *ngIf="countryCtrl.hasError('pattern') && countryCtrl.touched">
+       انگلیسی وارد کنید .
+    </p>
+  </div>
+</div>

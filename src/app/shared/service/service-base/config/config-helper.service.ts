@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
-import {RestExtra} from "./helper interface/rest-extra";
-import {MAIN_SERVER_URL} from "./config/server-url-config";
+import {RestExtra} from "../helper interface/rest-extra";
+import {MAIN_SERVER_URL} from "./server-url-config";
 import {HttpHeaders} from "@angular/common/http";
-import {TokenMode} from "./helper interface/token-mode";
-import {RequestContentType} from "./helper interface/request-content-type";
-import {ResponseContentType} from "./helper interface/response-content-type";
-import {ObjectToQueryStringHelper} from "../../helper/object-to-query-string-helper";
+import {TokenMode} from "../helper interface/token-mode";
+import {RequestContentType} from "../helper interface/request-content-type";
+import {ResponseContentType} from "../helper interface/response-content-type";
+import {ObjectToQueryStringHelper} from "../../../helper/object-to-query-string-helper";
 
 @Injectable({
   providedIn: 'root'
@@ -15,16 +15,16 @@ export class ConfigHelperService {
   constructor(private objectToQueryStringHelper: ObjectToQueryStringHelper) {
   }
 
+
+
+
   getUrl(restExtra: RestExtra) {
     console.log('restExtra', restExtra)
     if (restExtra.serverUrlConfig == null && restExtra.serverUrlConfig == undefined) {
       restExtra.serverUrlConfig = MAIN_SERVER_URL;
     }
-    // @ts-ignore
-    return restExtra.serverUrlConfig + restExtra.url + this.objectToQueryStringHelper.main(restExtra.urlQueryObject);
-
+    return restExtra.serverUrlConfig + restExtra.suffixPath + this.objectToQueryStringHelper.main(restExtra.urlQueryObject);
   }
-
 
   getHttpHeaders(httpHeaders: HttpHeaders, restExtra: RestExtra) {
     let token;
@@ -59,7 +59,7 @@ export class ConfigHelperService {
       case RequestContentType.BLOB:
         return httpHeaders;
       default:
-        return httpHeaders.append('Content-Type', 'application/json');
+        return httpHeaders
     }
   }
 

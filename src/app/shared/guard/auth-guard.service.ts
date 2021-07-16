@@ -1,18 +1,22 @@
 import {Injectable} from '@angular/core';
-import {Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
+import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
+import {AuthService} from "../../core-module/auth/service/auth.service";
 
-@Injectable()
-export class AuthGuardMobileService implements CanActivate {
-  constructor(private router: Router) {
+@Injectable(
+  {providedIn: 'root'}
+)
+export class AuthGuard implements CanActivate {
+  logged: boolean = false ;
+  constructor(private authService: AuthService) {
+    this.authService.loginCheck(true).subscribe(res=>{
+      this.logged = res ;
+    })
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {
+    if (this.logged) {
       return true;
     }
-
-    // not logged in so redirect to login page with the return url
-    // this.router.navigate(['/login'], {queryParams: {returnUrl: state.url}});
     return false;
   }
 }

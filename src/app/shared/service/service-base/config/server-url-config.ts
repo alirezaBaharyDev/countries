@@ -1,1 +1,1 @@
-export const MAIN_SERVER_URL = 'https://192.168.1.101/'
+export const MAIN_SERVER_URL = 'https://restcountries.eu/'

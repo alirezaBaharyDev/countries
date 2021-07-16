@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from "../../service/auth.service";
 
 @Component({
   selector: 'app-sign-in',
@@ -7,15 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignInComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private authService: AuthService
+  ) { }
 
   ngOnInit(): void {
   }
 
   /**
-   * add to localStorage logged true
+   * Add logged true in localStorage
+   * Redirect to panel
    */
   logIn() {
-    localStorage.setItem('logged' , JSON.stringify(true))
+    this.authService.login();
   }
 }

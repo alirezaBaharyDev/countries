@@ -1,12 +1,12 @@
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-function isFunction(value) {
+function isFunction(value:any) {
   return typeof value === 'function';
 }
 
 export const untilDestroyed = (
-  componentInstance,
+  componentInstance:any,
   destroyMethodName = 'ngOnDestroy'
 ) => <T>(source: Observable<T>) => {
   const originalDestroy = componentInstance[destroyMethodName];
